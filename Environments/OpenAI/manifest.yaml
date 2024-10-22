@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
-name: Sandbox
+name: AzureAI
 version: 1.0.0
-summary: Empty sandbox environment
-description: Deploys an empty sandbox environment
+summary: Azure AI Resource
+description: Deploys an Azure AI Resource
 runner: Bicep
 templatePath: main.bicep
