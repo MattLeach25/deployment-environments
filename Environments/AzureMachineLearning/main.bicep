@@ -4,18 +4,6 @@ param location string = resourceGroup().location
 @description('Machine learning workspace name')
 param machineLearningName string = 'mlws-${uniqueString(resourceGroup().id)}'
 
-@description('Resource ID of the application insights resource')
-param applicationInsightsId string
-
-@description('Resource ID of the container registry resource')
-param containerRegistryId string
-
-@description('Resource ID of the key vault resource')
-param keyVaultId string
-
-@description('Resource ID of the storage account resource')
-param storageAccountId string
-
 @description('Name of the storage account')
 param storageName string
 
