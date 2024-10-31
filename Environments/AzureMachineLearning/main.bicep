@@ -158,10 +158,9 @@ resource machineLearning 'Microsoft.MachineLearningServices/workspaces@2022-05-0
     description: 'Machine Learning workspace'
 
         // dependent resources
-        applicationInsights: applicationInsightsId
-        containerRegistry: containerRegistryId
-        keyVault: keyVaultId
-        storageAccount: storageAccountId
+        applicationInsights: applicationInsights.id
+        keyVault: keyVault.id
+        storageAccount: storage.id
 
     // configuration for workspaces with private link endpoint
     imageBuildCompute: 'cluster001'
