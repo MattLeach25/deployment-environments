@@ -5,7 +5,7 @@ param location string = resourceGroup().location
 param machineLearningName string = 'mlws-${uniqueString(resourceGroup().id)}'
 
 @description('Name of the storage account')
-param storageName string
+param storageName string = 'sa-${uniqueString(resourceGroup().id)}'
 
 @allowed([
   'Standard_LRS'
@@ -23,22 +23,18 @@ param storageSkuName string = 'Standard_LRS'
 
 var storageNameCleaned = replace(storageName, '-', '')
 
-@description('Tags to add to the resources')
-param tags object = {}
-
 @description('Application Insights resource name')
-param applicationInsightsName string
+param applicationInsightsName string = 'appinsights-${uniqueString(resourceGroup().id)}'
 
 @description('Log Analytics resource name')
-param logAnalyticsWorkspaceName string 
+param logAnalyticsWorkspaceName string = 'law-${uniqueString(resourceGroup().id)}'
 
 @description('The name of the Key Vault')
-param keyvaultName string
+param keyvaultName string = 'kv-${uniqueString(resourceGroup().id)}'
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
   name: keyvaultName
   location: location
-  tags: tags
   properties: {
     createMode: 'default'
     enabledForDeployment: false
@@ -125,7 +121,6 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
   location: location
-  tags: tags
   kind: 'web'
   properties: {
     Application_Type: 'web'
