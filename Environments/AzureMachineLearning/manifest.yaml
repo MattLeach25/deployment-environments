@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
+name: Azure Machine Learning
+version: 1.0.0
+summary: Azure Machine Learning
+description: Deploys an Azure Machine Learning resource
+runner: Bicep
+templatePath: main.bicep
