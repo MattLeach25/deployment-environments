@@ -2,7 +2,7 @@
 param location string = resourceGroup().location
 
 @description('Machine learning workspace name')
-param machineLearningName string
+param machineLearningName string = 'mlws-${uniqueString(resourceGroup().id)}'
 
 resource machineLearning 'Microsoft.MachineLearningServices/workspaces@2022-05-01' = {
   name: machineLearningName
