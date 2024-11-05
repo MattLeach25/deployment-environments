@@ -302,48 +302,50 @@ resource filePrivateDnsZoneVnetLink 'Microsoft.Network/privateDnsZones/virtualNe
   }
 }
 
-// resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
-//   name: logAnalyticsWorkspaceName
-//   location: location
-//   properties: {
-//     sku: {
-//       name: 'PerGB2018'
-//     }
-//     retentionInDays: 30
-//     publicNetworkAccessForIngestion: 'Enabled'
-//     publicNetworkAccessForQuery: 'Disabled'
-//   }
-// }
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
+  name: logAnalyticsWorkspaceName
+  location: location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+    retentionInDays: 30
+    publicNetworkAccessForIngestion: 'Enabled'
+    publicNetworkAccessForQuery: 'Disabled'
+  }
+}
 
-// resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
-//   name: applicationInsightsName
-//   location: location
-//   kind: 'web'
-//   properties: {
-//     Application_Type: 'web'
-//     WorkspaceResourceId: logAnalyticsWorkspace.id
-//     Flow_Type: 'Bluefield'
-//   }
-// }
+resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: applicationInsightsName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: logAnalyticsWorkspace.id
+    Flow_Type: 'Bluefield'
+    publicNetworkAccessForIngestion: 'Enabled'
+    publicNetworkAccessForQuery: 'Disabled'
+  }
+}
 
-// resource machineLearning 'Microsoft.MachineLearningServices/workspaces@2022-05-01' = {
-//   name: machineLearningName
-//   location: location
-//   identity: {
-//     type: 'SystemAssigned'
-//   }
-//   properties: {
-//     // workspace organization
-//     friendlyName: machineLearningName
-//     description: 'Machine Learning workspace'
+resource machineLearning 'Microsoft.MachineLearningServices/workspaces@2022-05-01' = {
+  name: machineLearningName
+  location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    // workspace organization
+    friendlyName: machineLearningName
+    description: 'Machine Learning workspace'
 
-//     // dependent resources
-//     applicationInsights: applicationInsights.id
-//     keyVault: keyVault.id
-//     storageAccount: storage.id
+    // dependent resources
+    applicationInsights: applicationInsights.id
+    keyVault: keyVault.id
+    storageAccount: storage.id
 
-//     // configuration for workspaces with private link endpoint
-//     imageBuildCompute: 'cluster001'
-//     publicNetworkAccess: 'Enabled'
-//   }
-// }
+    // configuration for workspaces with private link endpoint
+    imageBuildCompute: 'cluster001'
+    publicNetworkAccess: 'Enabled'
+  }
+}
