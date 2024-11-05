@@ -5,3 +5,8 @@ summary: Azure Machine Learning
 description: Deploys an Azure Machine Learning resource
 runner: Bicep
 templatePath: main.bicep
+parameters:
+- id: "AMLWorkspaceName"
+  name: "Azure Machine Learning Workspace Name"
+  description: "The name of the Azure Machine Learning workspace"
+  type: "string"
